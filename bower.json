@@ -1,0 +1,7 @@
+{
+  "name": "flask-angular-seed",
+  "version": "0.0.0",
+  "description": "An boilerplate for flask-angular projects",
+  "main": "index.js",
+  "license": "MIT"
+}

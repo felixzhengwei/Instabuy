@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
     <head>
+    	<link rel="stylesheet" type="text/css" href="static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    	<link rel="stylesheet" type="text/css" href="static/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+  		<link rel="stylesheet" type="text/css" href="static/bower_components/bootstrap-material-design/dist/css/ripples.min.css">
+  		<link rel="stylesheet" type="text/css" href="static/css/home.css">
+  		<link href='https://fonts.googleapis.com/css?family=Trade+Winds|Fira+Sans' rel='stylesheet' type='text/css'>
    	</head>
     <body>
-    	<p>Angular working</p>
+    	<div ng-view></div>
 	</body>
 	<footer>
 		<script src="static/bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="static/bower_components/jquery-ui/jquery-ui.min.js"></script>
 		<script src="static/bower_components/angular/angular.js"></script>
 		<script src="static/bower_components/angular-resource/angular-resource.min.js"></script>
 		<script src="static/bower_components/angular-route/angular-route.min.js"></script>
 		<script src="static/js/app.js"></script>
+		<script src="static/js/HomeController.js"></script>
+		<script src="static/js/LoginController.js"></script>
+		<script src="static/js/SignupController.js"></script>
 	</footer> 
 </html>

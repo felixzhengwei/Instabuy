@@ -9,6 +9,8 @@
     "jquery": "~2.2.0",
     "angular-route": "~1.5.0",
     "angular-resource": "~1.5.0",
-    "bootstrap": "~3.3.6"
+    "bootstrap": "~3.3.6",
+    "bootstrap-material-design": "~0.5.8",
+    "jquery-ui": "~1.11.4"
   }
 }

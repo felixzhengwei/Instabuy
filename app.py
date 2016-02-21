@@ -3,10 +3,12 @@ import twilio.twiml
 from target import *
 from nessie import checkBalance
 import requests
+from visa_direct import transaction
 import simplejson as json 
 
 app = Flask(__name__)
 global globvar
+global response
 
 @app.route('/')
 def hello_world():
@@ -43,6 +45,24 @@ def profile():
         globvar= request.json['key']
         print globvar
     return globvar
+
+@app.route('/buy', methods=['GET', 'POST'])
+def buy():
+	if request.method == 'POST':
+		print request.json['key']
+        money = int(request.json['key'])
+        print money
+        status = transaction(money)
+        if status == None:
+        	global response
+        	response = 'False'
+        else: 
+        	response = 'True'
+        return response
+
+@app.route('/get_response')
+def get_response():
+	return response
 
 @app.route('/get_product_list')
 def get_product_list():

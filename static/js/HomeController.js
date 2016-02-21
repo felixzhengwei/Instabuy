@@ -74,12 +74,25 @@ angular.module('app').controller('HomeController', ['$scope', '$http', function(
 	}
 
 	$scope.buy = function(){
-		
+		var request = Math.floor($scope.productInfo['price']);
+		 $http.post('/buy', {'key':request})
+             .success(function(){
+             	$http({
+				  method: 'GET',
+				  url: '/get_response'
+				}).then(function successCallback(response) {
+				     console.log("good");
+				  }, function errorCallback(response) {
+				   	 console.log("nah");
+				  });
+             })
+             .error(function(){}); 
 	}
 
 	$scope.chart = function () {
+			$(".chart").css({'display':"block"});
     		var dataArray = [];
-    		
+    		var value = $scope.productInfo['price'];
 		    $('#container').highcharts({
 		        title: {
 		            text: 'Current Price for',
@@ -130,19 +143,9 @@ angular.module('app').controller('HomeController', ['$scope', '$http', function(
 		        	dataArray.forEach(function(data) {
         				setTimeout(function(){
         					chart.series[0].addPoint(data);
-        					if(data[1] > value){
-        						keepgoing = false;
-        						$(".alertbox").fadeIn();
-        						$.ajax({
-								    type:"GET",
-								    url: "/twilio",
-								   success: function(response) {
-						                console.log(response);
-						            },
-						            error: function(error) {
-						                console.log(error);
-						            }
-								});
+        					if(data[1] < value){
+        						
+							});
         						// while(!keepGoing){
         						// 	//do nothing
         						// }

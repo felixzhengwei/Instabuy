@@ -179,3 +179,11 @@ input:focus ~ .highlight {
 .ui-helper-hidden-accessible{
 	display: none;
 }
+
+.chart{
+	display:none;
+}
+
+.message{
+	display:none;
+}

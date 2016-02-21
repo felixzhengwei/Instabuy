@@ -3,6 +3,8 @@ import simplejson as json
 import random 
 from decimal import Decimal
 
+transaction = False
+
 productDict = {'PS4 Console' : '50522463',
 				'Nikon D3300 DX-format DSLR Bundle' : '21490248',
 				'Pebble Time Steel Smartwatch' : '49124627',
@@ -32,4 +34,7 @@ def model_price(price):
 		priceList.append(float("{:.2f}".format(float(price)*random.uniform(0.6, 1.2))))
 
 	print priceList
+
+def set_transaction_true():
+	transaction = True 
 

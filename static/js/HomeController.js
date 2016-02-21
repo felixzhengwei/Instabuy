@@ -105,7 +105,7 @@ angular.module('app').controller('HomeController', ['$scope', '$http', function(
     		var value = $scope.productInfo['price'];
 		    $('#container').highcharts({
 		        title: {
-		            text: 'Current Price for',
+		            text: 'Current Price for' + $scope.productInfo['title'],
 		            x: -20 //center
 		        },
 		        subtitle: {

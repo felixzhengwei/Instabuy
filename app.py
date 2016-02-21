@@ -27,12 +27,11 @@ def get_target_data():
 def get_message():
     incoming_message = request.values.get('Body', None)
     print len(str(incoming_message))
-    x =  incoming_message.split(" ")[0].split("-")[0][:-1]
+    x = incoming_message.split(" ")[0].split("-")[0][:-1]
     print len(x)
     print x
     if str(x) == "BUY":
-    	print "its working"
-    	return set_transaction_true()
+		return set_transaction_true()
     else:
     	return None
 

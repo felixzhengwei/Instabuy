@@ -18,12 +18,23 @@
 <div class="row search">
     
     <div class="group">      
-      <input type="text" required>
+      <input id="put" ng-keyup="checkKey($event)" type="text" required>
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>Search</label>
     </div>
     
   </form>
+</div>
+
+<div class="container">
+	<div class="jumbotron">
+	  <h3 ng-modal="productInfo.title">{{productInfo.title}}</h3>
+
+	  <img id="image" src=''/>
+
+	  <p class="buttons"><a ng-modal="productInfo.price" class="btn btn-primary btn-lg">${{productInfo.price}}</a></p>
+	  <p class="buttons"><a class="btn btn-primary btn-lg">Buy</a></p>
+	  <p class="buttons"><a class="btn btn-primary btn-lg">Add to Watchlist</a></p>
 	</div>
 </div>

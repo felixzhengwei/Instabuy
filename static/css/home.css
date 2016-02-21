@@ -143,3 +143,17 @@ input:focus ~ .highlight {
 	from { background:#fff; }
   to 	{ width:0; background:transparent; }
 }
+
+
+.jumbotron{
+	text-align: center;
+}
+
+#image{
+	height:30%;
+	width:30%;
+}
+
+.buttons{
+	display: inline;
+}

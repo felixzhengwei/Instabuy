@@ -29,15 +29,19 @@ def get_target_data():
 
 @app.route("/get_message", methods=['GET', 'POST'])
 def get_message():
-    incoming_message = request.values.get('Body', None)
-    print len(str(incoming_message))
-    x = incoming_message.split(" ")[0].split("-")[0][:-1]
-    print len(x)
-    print x
-    if str(x) == "BUY":
-		return transaction(finalPrice)
-    else:
-    	return None
+	incoming_message = request.values.get('Body', None)
+	print len(str(incoming_message))
+	x = incoming_message.split(" ")[0].split("-")[0][:-1]
+	print len(x)
+ 	print x
+	if str(x).upper() == "BUY":
+		print "its working"
+		print finalPrice
+		status = transaction(float(finalPrice))
+		print status
+		return "True"
+	else:
+		return "False"
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():

@@ -1,4 +1,4 @@
-angular.module('app').controller('HomeController', ['$scope', '$http', function($scope, $http){
+angular.module('app').controller('HomeController', ['$scope', '$http', "$timeout", function($scope, $http,$timeout){
 	console.log("controller works");
 	var array = [ 'PS4 Console',
 				'Nikon D3300 DX-format DSLR Bundle',
@@ -26,6 +26,7 @@ angular.module('app').controller('HomeController', ['$scope', '$http', function(
 	}			
 	$scope.productInfo = {};
 	$scope.price_list = [];
+	$scope.update = false;
 
 	$( "#put" ).autocomplete({
 			      source: array
@@ -48,7 +49,8 @@ angular.module('app').controller('HomeController', ['$scope', '$http', function(
 		     $scope.productInfo['balance'] = response.data.balance
 		     jQuery("#image").attr('src',$scope.productInfo.image);
 		     $(".jumbotron").css({'display':"block"});
-
+		     $scope.update = true;
+		     $timeout($scope.getResult(), 3000)
 		     for(var i = 0; i< 11; i++){
 		     	$scope.price_list.push(parseFloat($scope.productInfo['price'])*Math.floor((Math.random() * 1.2) + 0.6));
 		     }
@@ -160,7 +162,7 @@ angular.module('app').controller('HomeController', ['$scope', '$http', function(
 											"price":data[1]})
 						             .success(function(){})
 						             .error(function(){}); 
-								value = value + 100000;
+								// value = value + 100000;
         						// while(!keepGoing){
         						// 	//do nothing
         						// }

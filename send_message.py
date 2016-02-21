@@ -17,7 +17,7 @@ def text(name, price):
 # message = client.messages.get(client.messages.list()[0].sid)
 #
 # print message.body
-# 
+#
 #
 # number = client.phone_numbers.update("PN2a0747eba6abf96b7e3c3ff0b4530f6e",
 #     sms_url="http://demo.twilio.com/docs/sms.xml")

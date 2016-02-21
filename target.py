@@ -3,11 +3,16 @@ import simplejson as json
 import random 
 from decimal import Decimal
 
-productDict = {'ps4 console' : '50522463',
+productDict = {'PS4 Console' : '50522463',
 				'Nikon D3300 DX-format DSLR Bundle' : '21490248',
 				'Pebble Time Steel Smartwatch' : '49124627',
-				'Pebble Time Round Smartwatch' : '50845993',
 				'GoPro Camera HERO' : '18760721',
+			   	'Bose SoundLink Speaker' : '18854140',
+			   	'TomTom Via GPS' : '21456407',
+			   	'Panasonic Sensor Microwave' : '16510846',
+			   	'LG 55 1080p HD TV' : '17221644',
+			   	'Microsoft Surface Pro 4' : '50308839',
+			   	'WD External Hard Drive' : '14881813',
 				'Beats Solo 2 Wireless Headphones' : '16696652'}
 
 def get_product(itemKey):
@@ -28,6 +33,3 @@ def model_price(price):
 
 	print priceList
 
-
-
-	

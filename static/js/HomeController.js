@@ -154,7 +154,7 @@ angular.module('app').controller('HomeController', ['$scope', '$http', function(
         						var name = $scope.productInfo['title'];
 								var money = $scope.productInfo['price'];
 								 $http.post('/message', {'name':name,
-											"price":money})
+											"price":data[1]})
 						             .success(function(){})
 						             .error(function(){}); 
 								value = value + 100000;

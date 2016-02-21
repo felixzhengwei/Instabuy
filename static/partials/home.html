@@ -34,7 +34,14 @@
 	  <img id="image" src=''/>
 
 	  <p class="buttons"><a ng-modal="productInfo.price" class="btn btn-primary btn-lg">${{productInfo.price}}</a></p>
-	  <p class="buttons"><a class="btn btn-primary btn-lg">Buy</a></p>
-	  <p class="buttons"><a class="btn btn-primary btn-lg">Add to Watchlist</a></p>
+	  <p class="buttons"><a ng-click='buy()' class="btn btn-primary btn-lg">Buy</a></p>
+	  <p class="buttons"><a ng-click='chart()' class="btn btn-primary btn-lg">Add to Watchlist</a></p>
+	  <a ng-modal="productInfo.balance" class="btn btn-primary btn-lg">Current Balance: ${{productInfo.balance}}</a>
+	</div>
+</div>
+
+<div class="container chart">
+	<div class="jumbotron">
+	  <div id="container"></div>
 	</div>
 </div>

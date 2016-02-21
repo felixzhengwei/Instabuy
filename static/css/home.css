@@ -58,7 +58,7 @@ input 				{
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
-  width:300px;
+  width:320px;
   border:none;
   border-bottom:2px solid #757575;
   background-color: transparent;
@@ -146,6 +146,7 @@ input:focus ~ .highlight {
 
 
 .jumbotron{
+	display: none;
 	text-align: center;
 }
 
@@ -156,4 +157,25 @@ input:focus ~ .highlight {
 
 .buttons{
 	display: inline;
+}
+
+.ui-menu-item{
+	display: block;
+	color: #fff;
+	/*width:24.2%;*/
+	width:24.2%;
+	background-color:#808080;
+	opacity: 0.4;
+	/*margin-left:-2.2%;*/
+	margin-left: -3.2%;
+	left:-10%;
+}
+
+
+.ui-menu-item:hover{
+	background-color: #000;
+}
+
+.ui-helper-hidden-accessible{
+	display: none;
 }

@@ -1,21 +1,26 @@
 from flask import Flask, jsonify, request, render_template, redirect
 import twilio.twiml
 from target import *
+from nessie import checkBalance
 import requests
 import simplejson as json 
 
 app = Flask(__name__)
+global globvar
 
 @app.route('/')
 def hello_world():
-	get_product(50522463)
+	# get_product(50522463)
 	return render_template("index.html")
 
 @app.route('/get_target_data')
 def get_target_data():
-	result = get_prices(50522463)
-	result['price_list'] = model_price(result['list_price'])
-	parse = get_product(50522463)
+	result = get_prices(globvar)
+	print result['list_price']
+	print model_price(result['list_price'])
+	parse = get_product(globvar)
+	parse['price_list'] = model_price(result['list_price'])
+	parse['balance'] = checkBalance()
 	return jsonify(parse), 200
 
 @app.route("/get_message", methods=['GET', 'POST'])
@@ -35,9 +40,10 @@ def get_message():
 def profile():
 
     if request.method == 'POST':
-        print request.json
-
-    return 'ok!'
+        global globvar 
+        globvar= request.json['key']
+        print globvar
+    return globvar
 
 @app.route('/get_product_list')
 def get_product_list():

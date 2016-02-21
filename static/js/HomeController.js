@@ -84,7 +84,7 @@ angular.module('app').controller('HomeController', ['$scope', '$http', function(
 				     if(response.data === "True") {
 				     	// $scope.productInfo['balance'] = response.data.newBalance
 				     	$(".message").css({"display":"block"});
-				     	if($scope.productInfo['price'] > $scope.productInfo['balance']){
+				     	if($scope.productInfo['price'] < $scope.productInfo['balance']){
 				     		$scope.productInfo['balance'] = $scope.productInfo['balance'] - $scope.productInfo['price'];	
 				     	}
 

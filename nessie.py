@@ -63,11 +63,11 @@ def withdrawal(amt,dt):
 def deposits(amt,dt):
     url = "http://api.reimaginebanking.com/accounts/{}/deposits?key={}".format(Checking_ID,apiKey)
     vals = {
-      "medium": "balance",
-      "transaction_date": dt,
-      "status": "completed",
-      "amount": amt,
-      "description": "string"
+        "medium": "balance",
+        "transaction_date": dt,
+        "status": "pending",
+        "amount": amt,
+        "description": "string"
     }
     response = requests.post(url,data=json.dumps(vals),headers={'content-type':'application/json'})
     if response.status_code == 201:

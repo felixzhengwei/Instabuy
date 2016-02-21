@@ -1,10 +1,10 @@
 import vdp_utils
 import json
 import nessie
-
+import datetime
 
 BASE_URL = 'https://sandbox.api.visa.com'
-
+today = datetime.datetime.now().strftime("YYYY-mm-dd")
 
 def pullFunds(S):
     uri = '/visadirect/fundstransfer/v1/pullfundstransactions/'
@@ -55,7 +55,10 @@ def pullFunds(S):
         "acquirerCountryCode": "101",
         "amount": "112.00"
     }''')
-    r = S.post(BASE_URL + uri, json=body)
+    try:
+        r = S.post(BASE_URL + uri, json=body)
+    except:
+        r = ''
     return r
 
 def pushFunds(S):
@@ -112,12 +115,11 @@ def pushFunds(S):
         "transactionCurrencyCode": "USD",
         "transactionIdentifier": "381228649430015"
     }''')
-    r = S.post(BASE_URL + uri, json=body)
+    try:
+        r = S.post(BASE_URL + uri, json=body)
+    except:
+        r = ''
     return r
-
-
-
-
 
 # import vdp_utils
 
@@ -125,11 +127,14 @@ def pushFunds(S):
 # BASE_URL = 'https://sandbox.api.visa.com'
 
 
-# def get_payment_info(S, call_id, data_level='SUMMARY'):
-#     uri = '/wallet-services-web/payment/data/' + call_id
-#     params = {'dataLevel': data_level}
-#     r = S.get(BASE_URL + uri, params=params)
-#     return r
+def get_payment_info(S, call_id, data_level='SUMMARY'):
+    uri = '/wallet-services-web/payment/data/' + call_id
+    params = {'dataLevel': data_level}
+    try:
+        r = S.get(BASE_URL + uri, params=params)
+    except:
+        r = None
+    return r
 
 
 # def main():
@@ -147,15 +152,20 @@ def pushFunds(S):
 # if __name__ == '__main__':
 #     main()
 
-x = 1100
+x = 1100000
 print "cost of product: " + str(x)
 
 def main():
+    call_id = '1105650383641652501'
+    api_key = 'UBYGU2DTGBMLJRUIIKV721kf4f9dTZ6UE0fHfTgNlvwqvHvSY'
+    shared_secret = '21F-e+fifjoRtYzmYi{tIzDTERE@W+sKv{TfQY8m'
     user_id = 'O9BAMP8XV1MQZ3FTYJ93216QeNA7E4jfr5Ttfoe08zet3YjX8'
     password = 'sNuMf1Rz5Loe3XMAzPDGo9ffKs0gh'
     cert = './cert.pem'
     key = './key_Instabuy2.pem'
-
+    response_pull = ''
+    response_push = ''
+    withdraw = False
     with vdp_utils.MSession(user_id, password, cert, key) as S:
         S.headers.update({'content-type': 'application/json',
                          'accept': 'application/json'})
@@ -163,41 +173,34 @@ def main():
         if nessie.checkBalance() > x:
             response_pull = pullFunds(S)
         else:
-            raise ValueError('Account lacks funds to buy product!')
-        response_push = pushFunds(S)
+            response_pull =''
+            # raise ValueError('Account lacks funds to buy product!')
 
-    print response_pull.status_code
-    print response_pull.content
-    print response_push.status_code
-    print response_push.content
+        if response_pull != '':
+            response_push = pushFunds(S)
+        else:
+            response_push = ''
 
+        if response_push != '':
+            withdraw = nessie.withdrawal(x,today)
+        else:
+            withdraw = False
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if withdraw is True:
+            with vdp_utils.XSession(api_key, shared_secret) as P:
+                S.headers.update({'content-type': 'application/json',
+                                 'accept': 'application/json'})
+                r = get_payment_info(P, call_id)
+            print r
+            return r
+    # print response_pull.status_code
+    # print response_pull.content
+    # print response_push.status_code
+    # print response_push.content
 
 if __name__ == '__main__':
+    # nessie.withdrawal(9999799099,today)
+    # nessie.deposits(20000,"2016-02-20")
+    # print nessie.checkBalance()
+    #
     main()

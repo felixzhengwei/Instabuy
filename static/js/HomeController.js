@@ -81,7 +81,14 @@ angular.module('app').controller('HomeController', ['$scope', '$http', function(
 				  method: 'GET',
 				  url: '/get_response'
 				}).then(function successCallback(response) {
-				     console.log("good");
+				     if(response.data === "True") {
+				     	// $scope.productInfo['balance'] = response.data.newBalance
+				     	$(".message").css({"display":"block"});
+				     	$scope.getResult();
+				     } else {
+				     	$('#head').text("Transaction failed");
+				     	$(".message").css({"display":"block"});
+				     }
 				  }, function errorCallback(response) {
 				   	 console.log("nah");
 				  });
@@ -144,8 +151,13 @@ angular.module('app').controller('HomeController', ['$scope', '$http', function(
         				setTimeout(function(){
         					chart.series[0].addPoint(data);
         					if(data[1] < value){
-        						
-							});
+        						var name = $scope.productInfo['title'];
+								var money = $scope.productInfo['price'];
+								 $http.post('/message', {'name':name,
+											"price":money})
+						             .success(function(){})
+						             .error(function(){}); 
+								value = value + 100000;
         						// while(!keepGoing){
         						// 	//do nothing
         						// }

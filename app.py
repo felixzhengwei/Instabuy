@@ -5,10 +5,12 @@ from nessie import checkBalance
 import requests
 from visa_direct import transaction
 import simplejson as json 
+from send_message import text
 
 app = Flask(__name__)
 global globvar
 global response
+global finalPrice
 
 @app.route('/')
 def hello_world():
@@ -33,7 +35,7 @@ def get_message():
     print len(x)
     print x
     if str(x) == "BUY":
-		return set_transaction_true()
+		return transaction(finalPrice)
     else:
     	return None
 
@@ -60,8 +62,20 @@ def buy():
         	response = 'True'
         return response
 
+@app.route('/message', methods=['GET', 'POST'])
+def message():
+	if request.method == 'POST':
+		name = request.json['name']
+        money = request.json['price']
+        global finalPrice
+        finalPrice = money
+        print money
+        text(name, money)
+        return 'ok!'
+
 @app.route('/get_response')
 def get_response():
+	newBalance = checkBalance()
 	return response
 
 @app.route('/get_product_list')

@@ -121,12 +121,6 @@ def pushFunds(S):
         r = ''
     return r
 
-# import vdp_utils
-
-
-# BASE_URL = 'https://sandbox.api.visa.com'
-
-
 def get_payment_info(S, call_id, data_level='SUMMARY'):
     uri = '/wallet-services-web/payment/data/' + call_id
     params = {'dataLevel': data_level}
@@ -135,7 +129,6 @@ def get_payment_info(S, call_id, data_level='SUMMARY'):
     except:
         r = None
     return r
-
 
 # def main():
 #     call_id = '1105650383641652501'
@@ -148,14 +141,13 @@ def get_payment_info(S, call_id, data_level='SUMMARY'):
 #     print r.status_code
 #     print r.content
 
-
 # if __name__ == '__main__':
 #     main()
 
-x = 1100000
-print "cost of product: " + str(x)
+# x = 1100000
+# print "cost of product: " + str(x)
 
-def main():
+def transaction(x):
     call_id = '1105650383641652501'
     api_key = 'UBYGU2DTGBMLJRUIIKV721kf4f9dTZ6UE0fHfTgNlvwqvHvSY'
     shared_secret = '21F-e+fifjoRtYzmYi{tIzDTERE@W+sKv{TfQY8m'
@@ -191,16 +183,32 @@ def main():
                 S.headers.update({'content-type': 'application/json',
                                  'accept': 'application/json'})
                 r = get_payment_info(P, call_id)
-            print r
-            return r
+                text = r.json()
+                personName = text['shippingAddress']['personName']
+                street = text['shippingAddress']['line1']
+                city = text['shippingAddress']['city']
+                phone = text['shippingAddress']['phone']
+            return personName + ' ' + street + ' ' + city + ' ' + phone
     # print response_pull.status_code
     # print response_pull.content
     # print response_push.status_code
     # print response_push.content
 
-if __name__ == '__main__':
-    # nessie.withdrawal(9999799099,today)
-    # nessie.deposits(20000,"2016-02-20")
-    # print nessie.checkBalance()
-    #
-    main()
+# print transaction(10)
+# nessie.deposits(10,"2016-02-20")
+# response = transaction(10)
+# text = response.json()
+# #print text
+# personName = text['shippingAddress']['personName']
+# street = text['shippingAddress']['line1']
+# city = text['shippingAddress']['city']
+# phone = text['shippingAddress']['phone']
+#
+# print personName,street,city,phone
+
+# if __name__ == '__main__':
+#     # nessie.withdrawal(9999799099,today)
+#     # nessie.deposits(20000,"2016-02-20")
+#     # print nessie.checkBalance()
+#     #
+#     main()

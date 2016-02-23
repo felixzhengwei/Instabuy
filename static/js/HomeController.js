@@ -148,29 +148,25 @@ angular.module('app').controller('HomeController', ['$scope', '$http', "$timeout
 		    	}
              };	
 		    populateData();
-		    		var time = 3000;
-		        	var chart = $('#container').highcharts();
-		        	var scenario = 0;
-		        	var firstValue = dataArray[0];
-		        	dataArray.forEach(function(data) {
-        				setTimeout(function(){
-        					chart.series[0].addPoint(data);
-        					if(data[1] < value){
-        						var name = $scope.productInfo['title'];
-								var money = $scope.productInfo['price'];
-								 $http.post('/message', {'name':name,
-											"price":data[1]})
-						             .success(function(){})
-						             .error(function(){}); 
-								// value = value + 100000;
-        						// while(!keepGoing){
-        						// 	//do nothing
-        						// }
-        						
-        					}
-        				},time);
-        				time+=6000;
-        			}); 
-        		}
+		    	var time = 3000;
+		        var chart = $('#container').highcharts();
+		        var scenario = 0;
+		        var firstValue = dataArray[0];
+		        dataArray.forEach(function(data) {
+        			setTimeout(function(){
+        				chart.series[0].addPoint(data);
+        				if(data[1] < value){
+        					var name = $scope.productInfo['title'];
+							var money = $scope.productInfo['price'];
+							 $http.post('/message', {'name':name,
+										"price":data[1]})
+					             .success(function(){})
+					             .error(function(){}); 
+							
+        				}
+        			},time);
+        			time+=6000;
+        		}); 
+        	}
         	
 }]);

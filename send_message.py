@@ -13,12 +13,3 @@ def text(name, price):
 		from_="+19706423851",
 		body="The " + str(name) + "is affordable, and is currently at a price of " + str(price) + ". Text BUY to purchase the item." ,
 	)
-
-# message = client.messages.get(client.messages.list()[0].sid)
-#
-# print message.body
-#
-#
-# number = client.phone_numbers.update("PN2a0747eba6abf96b7e3c3ff0b4530f6e",
-#     sms_url="http://demo.twilio.com/docs/sms.xml")
-# print number.sms_url

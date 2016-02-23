@@ -189,26 +189,3 @@ def transaction(x):
                 city = text['shippingAddress']['city']
                 phone = text['shippingAddress']['phone']
             return personName + ' ' + street + ' ' + city + ' ' + phone
-    # print response_pull.status_code
-    # print response_pull.content
-    # print response_push.status_code
-    # print response_push.content
-
-# print transaction(10)
-# nessie.deposits(10,"2016-02-20")
-# response = transaction(10)
-# text = response.json()
-# #print text
-# personName = text['shippingAddress']['personName']
-# street = text['shippingAddress']['line1']
-# city = text['shippingAddress']['city']
-# phone = text['shippingAddress']['phone']
-#
-# print personName,street,city,phone
-
-# if __name__ == '__main__':
-#     # nessie.withdrawal(9999799099,today)
-#     # nessie.deposits(20000,"2016-02-20")
-#     # print nessie.checkBalance()
-#     #
-#     main()
